@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="PushPopFB" Id="{ed9cf65b-112f-43d1-ab41-4e08b8b5abe1}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK PushPopFB
+VAR_INPUT
+	Push:BOOL;
+	Pop: BOOL;
+	PushNumber: UINT;
+END_VAR
+VAR_OUTPUT
+	TargetFloor: UINT;
+END_VAR
+VAR
+	Queue: ARRAY [1..3] OF UINT:=[0,0,0];
+	numberExist : BOOL;
+	i: INT:=1;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+
+IF Push THEN
+    numberExist := FALSE;
+    FOR i:=1 TO 3 DO
+        IF Queue[i] = PushNumber THEN
+            numberExist := TRUE;
+            EXIT; // Exit as soon as a duplicate is found
+        END_IF
+    END_FOR
+
+    IF NOT numberExist THEN
+        FOR i:=1 TO 3 DO
+            IF Queue[i] = 0 THEN
+                Queue[i] := PushNumber;
+                EXIT; // Exit after inserting the number to the first empty slot
+            END_IF
+        END_FOR
+    END_IF
+END_IF
+
+
+
+IF Pop THEN
+	FOR i:=1 TO 2 DO
+		Queue[i]:=Queue[i+1];
+	END_FOR
+	Queue[3]:=0;
+END_IF
+
+
+// Store Target Floor
+
+FOR i:=1 TO 3 DO
+	IF Queue[i] <> 0 THEN
+		TargetFloor := Queue[i];
+		EXIT;
+	END_IF
+END_FOR
+]]></ST>
+    </Implementation>
+    <LineIds Name="PushPopFB">
+      <LineId Id="16" Count="1" />
+      <LineId Id="80" Count="16" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="38" Count="1" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="42" Count="1" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="68" Count="1" />
+      <LineId Id="62" Count="0" />
+      <LineId Id="70" Count="0" />
+      <LineId Id="63" Count="1" />
+      <LineId Id="66" Count="0" />
+      <LineId Id="73" Count="0" />
+      <LineId Id="67" Count="0" />
+      <LineId Id="65" Count="0" />
+      <LineId Id="60" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

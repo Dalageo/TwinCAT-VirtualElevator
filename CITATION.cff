@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If this project was helpful, please cite it as below."
+title: "TwinCAT-VirtualElevator"
+authors:
+  - family-names: "Dalageorgos"
+    given-names: "Konstantinos"
+version: "1.0.0" 
+date-released: "2024-06-14"
+repository-code: "https://github.com/Dalageo/TwinCAT-VirtualElevator"
+license: "CC-BY-NC-SA-4.0"
