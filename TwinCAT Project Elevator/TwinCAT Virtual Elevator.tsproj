@@ -1,0 +1,327 @@
+<?xml version="1.0"?>
+<TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.53">
+	<Project ProjectGUID="{ABB44078-8F5C-43D2-A04D-D78FA19EE713}" TargetNetId="192.168.4.1.1.1" Target64Bit="true" ShowHideConfigurations="#x3c7">
+		<System>
+			<Tasks>
+				<Task Id="3" Priority="20" CycleTime="200000" AmsPort="350" AdtTasks="true">
+					<Name>PlcTask</Name>
+				</Task>
+			</Tasks>
+		</System>
+		<Plc>
+			<Project GUID="{DC1A8A78-500C-4077-A754-70B68A31F24D}" Name="PLCSim" PrjFilePath="PLCSim\PLCSim.plcproj" TmcFilePath="PLCSim\PLCSim.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLCSim\PLCSim.tmc" TmcHash="{902D34C0-9B97-4B0A-DCCB-7CB9C979884B}">
+					<Name>PLCSim Instance</Name>
+					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
+					<Vars VarGrpType="1">
+						<Name>PlcTask Inputs</Name>
+						<Var>
+							<Name>GVL.ixLampLevel1</Name>
+							<Comment><![CDATA[ Lamp at level 1]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.ixLampLevel2</Name>
+							<Comment><![CDATA[ Lamp at level 2]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.ixLampLevel3</Name>
+							<Comment><![CDATA[ Lamp at level 3]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.ixLampElevat1</Name>
+							<Comment><![CDATA[ Lamp 1 inside elevator ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.ixLampElevat2</Name>
+							<Comment><![CDATA[ Lamp 2 inside elevator ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.ixLampElevat3</Name>
+							<Comment><![CDATA[ Lamp 3 inside elevator ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.ixMotorDown</Name>
+							<Comment><![CDATA[ Run motor down ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.ixMotorUp</Name>
+							<Comment><![CDATA[ Run motor up ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.ixDoorClose</Name>
+							<Comment><![CDATA[ Close door and keep it closed ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.iiDisplayElevat</Name>
+							<Comment><![CDATA[ Intiger display inside elevator ]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+					</Vars>
+					<Vars VarGrpType="2" AreaNo="1">
+						<Name>PlcTask Outputs</Name>
+						<Var>
+							<Name>GVL.qxButtLevel1</Name>
+							<Comment><![CDATA[ Button at level 1 ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.qxButtLevel2</Name>
+							<Comment><![CDATA[ Button at level 2 ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.qxButtLevel3</Name>
+							<Comment><![CDATA[ Button at level 3 ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.qxButtElevat1</Name>
+							<Comment><![CDATA[ Button 1 inside elevator ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.qxButtElevat2</Name>
+							<Comment><![CDATA[ Button 2 inside elevator ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.qxButtElevat3</Name>
+							<Comment><![CDATA[ Button 3 inside elevator ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.qxButtGreen</Name>
+							<Comment><![CDATA[ Green button ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.qxButtRed</Name>
+							<Comment><![CDATA[ Red button, normally closed ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.qxElevatLevel1</Name>
+							<Comment><![CDATA[ Sensor at level 1 for elevator presence ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.qxElevatLevel2</Name>
+							<Comment><![CDATA[ Sensor at level 2 for elevator presence ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.qxElevatLevel3</Name>
+							<Comment><![CDATA[ Sensor at level 3 for elevator presence ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.qxDoorClosed</Name>
+							<Comment><![CDATA[ Sensor for door closed ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.qxDoorOpen</Name>
+							<Comment><![CDATA[ Sensor for door open ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+					</Vars>
+					<Contexts>
+						<Context>
+							<Id>0</Id>
+							<Name>PlcTask</Name>
+							<ManualConfig>
+								<OTCID>#x02010030</OTCID>
+							</ManualConfig>
+							<Priority>20</Priority>
+							<CycleTime>20000000</CycleTime>
+						</Context>
+					</Contexts>
+					<TaskPouOids>
+						<TaskPouOid Prio="20" OTCID="#x08502001"/>
+					</TaskPouOids>
+				</Instance>
+			</Project>
+			<Project GUID="{456A2517-61F6-479D-8F38-DBC29872E2E6}" Name="PLCStudent" PrjFilePath="PLCStudent\PLCStudent.plcproj" TmcFilePath="PLCStudent\PLCStudent.tmc" ReloadTmc="true" AmsPort="852" FileArchiveSettings="#x000e" SymbolicMapping="true">
+				<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLCStudent\PLCStudent.tmc" TmcHash="{6B7C35E2-1463-4F0E-6A9B-FB6A711EDA44}">
+					<Name>PLCStudent Instance</Name>
+					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
+					<Vars VarGrpType="1">
+						<Name>PlcTask Inputs</Name>
+						<Var>
+							<Name>GVL.ixButtLevel1</Name>
+							<Comment><![CDATA[ Button at level 1 ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.ixButtLevel2</Name>
+							<Comment><![CDATA[ Button at level 2 ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.ixButtLevel3</Name>
+							<Comment><![CDATA[ Button at level 3 ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.ixButtElevat1</Name>
+							<Comment><![CDATA[ Button 1 inside elevator ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.ixButtElevat2</Name>
+							<Comment><![CDATA[ Button 2 inside elevator ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.ixButtElevat3</Name>
+							<Comment><![CDATA[ Button 3 inside elevator ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.ixButtGreen</Name>
+							<Comment><![CDATA[ Green button ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.ixButtRed</Name>
+							<Comment><![CDATA[ Red button, normally closed ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.ixElevatLevel1</Name>
+							<Comment><![CDATA[ Sensor at level 1 for elevator presence ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.ixElevatLevel2</Name>
+							<Comment><![CDATA[ Sensor at level 2 for elevator presence ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.ixElevatLevel3</Name>
+							<Comment><![CDATA[ Sensor at level 3 for elevator presence ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.ixDoorClosed</Name>
+							<Comment><![CDATA[ Sensor for door closed ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.ixDoorOpen</Name>
+							<Comment><![CDATA[ Sensor for door open ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+					</Vars>
+					<Vars VarGrpType="2" AreaNo="1">
+						<Name>PlcTask Outputs</Name>
+						<Var>
+							<Name>GVL.qxLampLevel1</Name>
+							<Comment><![CDATA[ Lamp at level 1]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.qxLampLevel2</Name>
+							<Comment><![CDATA[ Lamp at level 2]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.qxLampLevel3</Name>
+							<Comment><![CDATA[ Lamp at level 3]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.qxLampElevat1</Name>
+							<Comment><![CDATA[ Lamp 1 inside elevator ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.qxLampElevat2</Name>
+							<Comment><![CDATA[ Lamp 2 inside elevator ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.qxLampElevat3</Name>
+							<Comment><![CDATA[ Lamp 3 inside elevator ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.qxMotorDown</Name>
+							<Comment><![CDATA[ Run motor down ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.qxMotorUp</Name>
+							<Comment><![CDATA[ Run motor up ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.qxDoorClose</Name>
+							<Comment><![CDATA[ Close door and keep it closed ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.qiDispElevat</Name>
+							<Comment><![CDATA[ Integer display inside elevator ]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+					</Vars>
+					<Contexts>
+						<Context>
+							<Id>0</Id>
+							<Name>PlcTask</Name>
+							<ManualConfig>
+								<OTCID>#x02010030</OTCID>
+							</ManualConfig>
+							<Priority>20</Priority>
+							<CycleTime>20000000</CycleTime>
+						</Context>
+					</Contexts>
+					<TaskPouOids>
+						<TaskPouOid Prio="20" OTCID="#x08502041"/>
+					</TaskPouOids>
+				</Instance>
+			</Project>
+		</Plc>
+		<Io/>
+	</Project>
+	<Mappings>
+		<MappingInfo Identifier="{00000000-2001-0850-0020-500840205008}" Id="#x02030010"/>
+		<OwnerA Name="TIPC^PLCSim^PLCSim Instance">
+			<OwnerB Name="TIPC^PLCStudent^PLCStudent Instance">
+				<Link VarA="PlcTask Inputs^GVL.iiDisplayElevat" VarB="PlcTask Outputs^GVL.qiDispElevat"/>
+				<Link VarA="PlcTask Inputs^GVL.ixDoorClose" VarB="PlcTask Outputs^GVL.qxDoorClose"/>
+				<Link VarA="PlcTask Inputs^GVL.ixLampElevat1" VarB="PlcTask Outputs^GVL.qxLampElevat1"/>
+				<Link VarA="PlcTask Inputs^GVL.ixLampElevat2" VarB="PlcTask Outputs^GVL.qxLampElevat2"/>
+				<Link VarA="PlcTask Inputs^GVL.ixLampElevat3" VarB="PlcTask Outputs^GVL.qxLampElevat3"/>
+				<Link VarA="PlcTask Inputs^GVL.ixLampLevel1" VarB="PlcTask Outputs^GVL.qxLampLevel1"/>
+				<Link VarA="PlcTask Inputs^GVL.ixLampLevel2" VarB="PlcTask Outputs^GVL.qxLampLevel2"/>
+				<Link VarA="PlcTask Inputs^GVL.ixLampLevel3" VarB="PlcTask Outputs^GVL.qxLampLevel3"/>
+				<Link VarA="PlcTask Inputs^GVL.ixMotorDown" VarB="PlcTask Outputs^GVL.qxMotorDown"/>
+				<Link VarA="PlcTask Inputs^GVL.ixMotorUp" VarB="PlcTask Outputs^GVL.qxMotorUp"/>
+				<Link VarA="PlcTask Outputs^GVL.qxButtElevat1" VarB="PlcTask Inputs^GVL.ixButtElevat1"/>
+				<Link VarA="PlcTask Outputs^GVL.qxButtElevat2" VarB="PlcTask Inputs^GVL.ixButtElevat2"/>
+				<Link VarA="PlcTask Outputs^GVL.qxButtElevat3" VarB="PlcTask Inputs^GVL.ixButtElevat3"/>
+				<Link VarA="PlcTask Outputs^GVL.qxButtGreen" VarB="PlcTask Inputs^GVL.ixButtGreen"/>
+				<Link VarA="PlcTask Outputs^GVL.qxButtLevel1" VarB="PlcTask Inputs^GVL.ixButtLevel1"/>
+				<Link VarA="PlcTask Outputs^GVL.qxButtLevel2" VarB="PlcTask Inputs^GVL.ixButtLevel2"/>
+				<Link VarA="PlcTask Outputs^GVL.qxButtLevel3" VarB="PlcTask Inputs^GVL.ixButtLevel3"/>
+				<Link VarA="PlcTask Outputs^GVL.qxButtRed" VarB="PlcTask Inputs^GVL.ixButtRed"/>
+				<Link VarA="PlcTask Outputs^GVL.qxDoorClosed" VarB="PlcTask Inputs^GVL.ixDoorClosed"/>
+				<Link VarA="PlcTask Outputs^GVL.qxDoorOpen" VarB="PlcTask Inputs^GVL.ixDoorOpen"/>
+				<Link VarA="PlcTask Outputs^GVL.qxElevatLevel1" VarB="PlcTask Inputs^GVL.ixElevatLevel1"/>
+				<Link VarA="PlcTask Outputs^GVL.qxElevatLevel2" VarB="PlcTask Inputs^GVL.ixElevatLevel2"/>
+				<Link VarA="PlcTask Outputs^GVL.qxElevatLevel3" VarB="PlcTask Inputs^GVL.ixElevatLevel3"/>
+			</OwnerB>
+		</OwnerA>
+	</Mappings>
+</TcSmProject>

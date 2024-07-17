@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+  <GVL Name="GVL" Id="{3797568a-cf39-4b5e-860a-00d023f684e8}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+//Input to PLC from process
+	ixButtLevel1		AT %I*:	BOOL;		(* Button at level 1 *)
+	ixButtLevel2		AT %I*:	BOOL;		(* Button at level 2 *)
+	ixButtLevel3		AT %I*:	BOOL;		(* Button at level 3 *)
+
+	ixButtElevat1		AT %I*:	BOOL;		(* Button 1 inside elevator *)
+	ixButtElevat2		AT %I*:	BOOL;		(* Button 2 inside elevator *)
+	ixButtElevat3		AT %I*:	BOOL;		(* Button 3 inside elevator *)
+
+	ixButtGreen 		AT %I*:	BOOL;		(* Green button *)
+	ixButtRed			AT %I*:	BOOL;		(* Red button, normally closed *)
+
+	ixElevatLevel1 		AT %I*: BOOL;		(* Sensor at level 1 for elevator presence *)
+	ixElevatLevel2 		AT %I*: BOOL;		(* Sensor at level 2 for elevator presence *)
+	ixElevatLevel3 		AT %I*: BOOL;		(* Sensor at level 3 for elevator presence *)
+
+	ixDoorClosed		AT %I*: BOOL;		(* Sensor for door closed *)
+	ixDoorOpen			AT %I*:	BOOL;		(* Sensor for door open *)
+
+//Output from PLC to process
+	qxLampLevel1		AT %Q*:	BOOL;		(* Lamp at level 1*)
+	qxLampLevel2		AT %Q*:	BOOL;		(* Lamp at level 2*)
+	qxLampLevel3		AT %Q*:	BOOL;		(* Lamp at level 3*)
+
+	qxLampElevat1 		AT %Q*:	BOOL;		(* Lamp 1 inside elevator *)
+	qxLampElevat2 		AT %Q*:	BOOL;		(* Lamp 2 inside elevator *)
+	qxLampElevat3 		AT %Q*:	BOOL;		(* Lamp 3 inside elevator *)
+
+	qxMotorDown			AT %Q*:	BOOL;		(* Run motor down *)
+	qxMotorUp			AT %Q*:	BOOL;		(* Run motor up *)
+
+	qxDoorClose			AT %Q*:	BOOL;		(* Close door and keep it closed *)
+	qiDispElevat 		AT %Q*:	UINT;		(* Integer display inside elevator *)
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

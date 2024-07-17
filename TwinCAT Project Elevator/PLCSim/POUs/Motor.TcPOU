@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="Motor" Id="{96cbc116-404b-4166-81b2-591009e30d51}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Motor
+
+VAR_INPUT
+	Run:			BOOL;		(* Run the motor in desired direction *)
+	Direction:		BOOL;		(* Direction to run in *)
+	Speed:			UINT:=1;	(* Motor speed default=1 *)
+	TopBottom:		BOOL;		(* If true Top and Bottom sensors are unique, if false
+                               					Sensor1=Sensor1 OR Bottom; Sensor3=Sensor3 OR Top; 
+                               					BottomLimit=FALSE; TopLimit=False*)
+	CloseDoor: 		BOOL;		(* Close door and keep it closed *)
+END_VAR
+VAR_OUTPUT
+	Running: 		BOOL;		(* True if the motor is running *)
+	Sensor1: 		BOOL;		(* Sensor for level 1 *)
+	Sensor2: 		BOOL;		(* Sensor for level 2 *)
+	Sensor3: 		BOOL;		(* Sensor for level 3 *)
+	TopLimit: 		BOOL;		(* Top limit switch, only used if TopBottom = TRUE *)
+	BottomLimit:	BOOL;   	(* Bottom limit switch, only used if TopBottom = TRUE *)
+	DoorOpen: 		BOOL;		(* Sensor for door open *)
+	DoorClosed: 	BOOL;		(* Sensor for door closed *)
+	Danger: 		BOOL;		(* Warning if running with not closed door *)
+	DoorPosition: 	INT;		(* Door position *)
+	ElevatPos: 		DINT:=5;	(* Elevator position *)
+END_VAR
+VAR
+	OldRun: 		BOOL;
+	OldDirection:	BOOL;
+	DoorMove:		INT;
+END_VAR
+VAR CONSTANT
+	TopLevel:		UINT:=450;	(* These constans defines the graphic level for each floor and the virtual sesnors *)
+	GroundLevel:	UINT:=0;
+	Floor1:			UINT:=5;
+	Floor2:			UINT:=190;
+	Floor3:			UINT:=380;
+	DoorOpenPos:	INT:=0;
+	DoorClosedPos: 	INT:=54;
+	DoorSpeed: 		INT:=6;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* FunctionBlock Motor *)
+(* 2008-09-19 Fredrik Danielsson University West *)
+(* 2016-01-07 BoS University West, door added *)
+(* 2018-11-11 Anders N, converted to TwinCAT *)
+(* v.3.1 2019-01-02 BoS, updated with new IO names and limited version for student use*)
+
+(* By the use of oldRun we simulate a small delay when starting and
+   stoping the motor. The same delay is valid for the direction. *)
+IF OldRun THEN
+	IF OldDirection THEN
+		ElevatPos:=ElevatPos+Speed;
+	ELSE
+		ElevatPos:=ElevatPos-Speed;
+	END_IF;
+
+	Running:=TRUE;
+ELSE
+	Running:=FALSE;
+END_IF;
+
+
+IF ElevatPos>=TopLevel THEN
+	ElevatPos:=TopLevel;
+	Running:=FALSE;
+	TopLimit:=TRUE;
+ELSE
+	TopLimit:=FALSE;
+END_IF;
+
+IF ElevatPos<=GroundLevel THEN
+	ElevatPos:=GroundLevel;
+	Running:=FALSE;
+	BottomLimit:=TRUE;
+ELSE
+	BottomLimit:=FALSE;
+END_IF;
+
+
+IF ElevatPos>=(Floor1-Speed*2) AND ElevatPos<=(Floor1+Speed*2) THEN
+	Sensor1:=TRUE;
+ELSE
+	Sensor1:=FALSE;
+END_IF;
+
+IF ElevatPos>=(Floor2-Speed*2) AND ElevatPos<=(Floor2+Speed*2) THEN
+	Sensor2:=TRUE;
+ELSE
+	Sensor2:=FALSE;
+END_IF;
+
+IF ElevatPos>=(Floor3-Speed*2) AND ElevatPos<=(Floor3+Speed*2) THEN
+	Sensor3:=TRUE;
+ELSE
+	Sensor3:=FALSE;
+END_IF;
+
+
+(* If the Top and Bottom limt sensors is deactivated the we hide them here *)
+IF NOT TopBottom THEN
+	TopLimit:=FALSE;
+	BottomLimit:=FALSE;
+END_IF;
+
+OldRun:=Run;
+OldDirection:=Direction;
+
+
+(* Door *)
+IF CloseDoor THEN
+	IF DoorPosition<DoorClosedPos THEN
+		
+DoorMove:=DoorMove+1;
+		IF DoorMove>10 THEN
+			DoorMove:=0;
+			DoorPosition:=DoorPosition+DoorSpeed;
+		END_IF
+	END_IF
+ELSE
+	IF DoorPosition>DoorOpenPos THEN
+		DoorMove:=DoorMove+1;
+		IF DoorMove>10 THEN
+			DoorMove:=0;
+			DoorPosition:=DoorPosition-DoorSpeed;
+		END_IF
+	END_IF
+END_IF
+
+IF DoorPosition<=DoorOpenPos THEN
+	DoorOpen:=TRUE;
+ELSE
+	DoorOpen:=FALSE;
+END_IF
+
+IF DoorPosition>=DoorClosedPos THEN
+	DoorClosed:=TRUE;
+ELSE
+	DoorClosed:=FALSE;
+END_IF
+
+(* Warning if running elevator with not closed door *)
+IF Running THEN
+	IF NOT DoorClosed THEN
+		Danger:=TRUE;
+	ELSE
+		Danger:=FALSE;
+	END_IF
+ELSE
+	Danger:=FALSE;
+END_IF
+]]></ST>
+    </Implementation>
+    <LineIds Name="Motor">
+      <LineId Id="47" Count="2" />
+      <LineId Id="195" Count="1" />
+      <LineId Id="50" Count="64" />
+      <LineId Id="183" Count="0" />
+      <LineId Id="193" Count="0" />
+      <LineId Id="184" Count="0" />
+      <LineId Id="187" Count="0" />
+      <LineId Id="185" Count="1" />
+      <LineId Id="116" Count="2" />
+      <LineId Id="188" Count="2" />
+      <LineId Id="192" Count="0" />
+      <LineId Id="191" Count="0" />
+      <LineId Id="120" Count="24" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
