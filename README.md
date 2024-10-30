@@ -24,7 +24,7 @@
       - <strong>Button Functionality</strong>: Buttons inside the elevator and on each floor call and direct the elevator. The system processes the pressed buttons in the correct order to ensure efficient operation.
     </td>
     <td style="padding-left: 20px;"> 
-      <img src="https://github.com/Dalageo/TwinCat3---Elevator/assets/153513781/83b20cbf-1169-4bff-8f58-c547639eb90b" width="2000" style="border-left: 20px solid transparent;">
+      <img src="https://github.com/Dalageo/TwinCat3---Elevator/assets/153513781/83b20cbf-1169-4bff-8f58-c547639eb90b" width="200" style="border-left: 20px solid transparent;">
     </td>
   </tr>
 </table>
