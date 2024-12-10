@@ -10,7 +10,7 @@
   <img src="https://img.shields.io/github/stars/Dalageo/TwinCat-VirtualElevator?style=social" alt="GitHub stars">
 </div>
 
-# Simulating a Three-Floor Elevator System Using TwinCAT PLC Programming
+# Simulating a Three-Floor Elevator System Using TwinCAT PLC Programming 🛗
 
 <table>
   <tr>
